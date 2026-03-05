@@ -1,0 +1,24 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Azure.AI.OpenAI" Version="2.8.0-beta.1" />
+    <PackageVersion Include="Azure.Identity" Version="1.18.0-beta.2" />
+    <PackageVersion Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.260205.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.AI.OpenAI" Version="10.2.0-preview.1.26063.2" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="10.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="10.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="10.0.2" />
+    <PackageVersion Include="Microsoft.Graph" Version="5.102.0" />
+    <PackageVersion Include="Microsoft.Identity.Client" Version="4.82.1" />
+    <PackageVersion Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.82.1" />
+    <PackageVersion Include="Microsoft.Identity.Web" Version="4.3.0" />
+    <PackageVersion Include="Microsoft.Identity.Web.GraphServiceClient" Version="4.3.0" />
+    <PackageVersion Include="ModelContextProtocol" Version="0.8.0-preview.1" />
+    <PackageVersion Include="ModelContextProtocol.AspNetCore" Version="0.8.0-preview.1" />
+    <PackageVersion Include="Spectre.Console" Version="0.54.1-alpha.0.59" />
+  </ItemGroup>
+</Project>

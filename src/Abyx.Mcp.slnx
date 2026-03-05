@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../.gitignore" />
+    <File Path="../README.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="Abyx.McpClient/Abyx.McpClient.csproj" />
+  <Project Path="Abyx.McpServer/Abyx.McpServer.csproj" />
+</Solution>
