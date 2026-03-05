@@ -24,12 +24,44 @@ string endpoint = configuration["AzureOpenAI:Endpoint"] ?? throw new InvalidOper
 string deploymentName = configuration["AzureOpenAI:DeploymentName"] ?? throw new InvalidOperationException("DeploymentName is not configured.");
 string apiKey = configuration["AzureOpenAI:ApiKey"] ?? throw new InvalidOperationException("ApiKey is not configured.");
 
-var credential = new InteractiveBrowserCredential(new InteractiveBrowserCredentialOptions
+var authRecordPath = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+    ".AbxyMcpClient", "auth-record.json");
+
+AuthenticationRecord? authRecord = null;
+if (File.Exists(authRecordPath))
+{
+    using var stream = File.OpenRead(authRecordPath);
+    authRecord = await AuthenticationRecord.DeserializeAsync(stream);
+}
+
+var credentialOptions = new InteractiveBrowserCredentialOptions
 {
     TenantId = tenantId,
     ClientId = clientId,
-    RedirectUri = new Uri("http://localhost")
-});
+    RedirectUri = new Uri("http://localhost"),
+    TokenCachePersistenceOptions = new TokenCachePersistenceOptions
+    {
+        Name = "abyx-mcp-client"
+    }
+};
+
+if (authRecord is not null)
+{
+    credentialOptions.AuthenticationRecord = authRecord;
+}
+
+var credential = new InteractiveBrowserCredential(credentialOptions);
+
+if (authRecord is null)
+{
+    // First run: authenticate and persist the record for future runs
+    var record = await credential.AuthenticateAsync(
+        new Azure.Core.TokenRequestContext(scopes));
+    Directory.CreateDirectory(Path.GetDirectoryName(authRecordPath)!);
+    using var stream = File.OpenWrite(authRecordPath);
+    await record.SerializeAsync(stream);
+}
 
 var wiretapHandler = new WiretapHandler
 {
