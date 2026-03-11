@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.Identity.Client" />
     <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" />
     <PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+    <PackageReference Include="Microsoft.Extensions.AI" />
     <PackageReference Include="ModelContextProtocol" />
     <PackageReference Include="Microsoft.Extensions.AI.OpenAI" />
     <PackageReference Include="Microsoft.Extensions.Logging" />

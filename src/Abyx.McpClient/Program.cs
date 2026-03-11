@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using ModelContextProtocol.Client;
 using OpenAI.Chat;
+using Spectre.Console;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -95,5 +96,14 @@ AIAgent agent = new AzureOpenAIClient(
         instructions: "You answer questions related to my User Profile.",
         tools: [.. mcpTools]);
 
-Console.WriteLine(
-    await agent.RunAsync("Get my user profile information."));
+var result = await agent.RunAsync("Get my user profile information.");
+
+AnsiConsole.WriteLine();
+AnsiConsole.Write(
+    new Panel(new Markup($"[bold chartreuse2]{Markup.Escape(result.ToString())}[/]"))
+    {
+        Header = new PanelHeader("[bold chartreuse2] Agent Response [/]"),
+        Border = BoxBorder.Double,
+        Padding = new Padding(1, 1),
+        Expand = true
+    });

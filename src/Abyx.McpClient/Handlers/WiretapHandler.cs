@@ -32,12 +32,18 @@ public sealed class WiretapHandler : DelegatingHandler
             WriteResponseHeader(response);
             WriteHeadersTable(response.Headers);
 
-            if (response.Content is not null)
+            var contentType = response.Content?.Headers.ContentType?.MediaType;
+            var isStreaming = string.Equals(contentType, "text/event-stream", StringComparison.OrdinalIgnoreCase);
+
+            if (response.Content is not null && !isStreaming)
             {
                 var respBody = await response.Content.ReadAsStringAsync(ct);
                 WriteBody("Response Body", respBody);
 
-                response.Content = RecreateContent(respBody, response.Content);
+                if (!string.IsNullOrWhiteSpace(respBody))
+                {
+                    response.Content = RecreateContent(respBody, response.Content);
+                }
             }
         }
 

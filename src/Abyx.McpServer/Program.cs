@@ -35,9 +35,9 @@ options =>
     {
         options.ResourceMetadata = new ModelContextProtocol.Authentication.ProtectedResourceMetadata
         {
-            Resource = new Uri("https://localhost:7234/"),
-            ResourceDocumentation = new Uri("https://docs.contoso.com/mcp"),
-            AuthorizationServers = [ new Uri($"https://login.microsoftonline.com/{azureAdOptions!.TenantId}/v2.0") ],
+            Resource = "https://localhost:7234/",
+            ResourceDocumentation = "https://docs.contoso.com/mcp",
+            AuthorizationServers = [ $"https://login.microsoftonline.com/{azureAdOptions!.TenantId}/v2.0" ],
             ScopesSupported = [.. azureAdOptions!.Scope]
         };
     })
