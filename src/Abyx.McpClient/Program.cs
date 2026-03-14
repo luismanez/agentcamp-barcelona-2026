@@ -100,9 +100,9 @@ var result = await agent.RunAsync("Get my user profile information.");
 
 AnsiConsole.WriteLine();
 AnsiConsole.Write(
-    new Panel(new Markup($"[bold chartreuse2]{Markup.Escape(result.ToString())}[/]"))
+    new Panel(new Markup($"[bold dodgerblue1]{Markup.Escape(result.ToString())}[/]"))
     {
-        Header = new PanelHeader("[bold chartreuse2] Agent Response [/]"),
+        Header = new PanelHeader("[bold dodgerblue1] Agent Response [/]"),
         Border = BoxBorder.Double,
         Padding = new Padding(1, 1),
         Expand = true
